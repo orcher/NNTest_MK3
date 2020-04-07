@@ -1,0 +1,76 @@
+﻿<Window x:Class="NNTest_MK3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NNTest_MK3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="NN">
+                <MenuItem x:Name="NN_New_btn" Header="New" Click="NN_New_btn_Click"></MenuItem>
+                <MenuItem x:Name="NN_Import_btn" Header="Import" Click="NN_Import_btn_Click"></MenuItem>
+                <MenuItem x:Name="NN_Export_btn" Header="Export" Click="NN_Export_btn_Click" IsEnabled="False"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Training">
+                <MenuItem x:Name="Training_LoadData_btn" Header="Load Data" Click="Training_LoadData_btn_Click"></MenuItem>
+                <MenuItem Header="Create Trainig Data" Click="MenuItem_Click_10"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Testing">
+                <MenuItem Header="Test" Click="MenuItem_Click_2"></MenuItem>
+                <MenuItem Header="Create Testing Data" Click="MenuItem_Click_11"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Sound Recording">
+                <MenuItem Header="Start" Click="MenuItem_Click"></MenuItem>
+                <MenuItem Header="Stop" Click="MenuItem_Click_1"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="MongoDB">
+                <MenuItem Header="Get Last Updated" Click="MenuItem_Click_3"></MenuItem>
+                <MenuItem Header="Update Traiding Data" Click="MenuItem_Click_4"></MenuItem>
+                <MenuItem Header="Show stock">
+                    <MenuItem Header="MSFT" Click="MenuItem_Click_5"></MenuItem>
+                    <MenuItem Header="AAPL" Click="MenuItem_Click_6"></MenuItem>
+                    <MenuItem Header="IBM" Click="MenuItem_Click_7"></MenuItem>
+                    <MenuItem Header="EBAY" Click="MenuItem_Click_8"></MenuItem>
+                    <MenuItem Header="FB" Click="MenuItem_Click_9"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <TabControl x:Name="MainTabControl_tc" Background="Transparent" BorderBrush="Transparent">
+            <TabItem x:Name ="NNVis_Tab_ti" Header="NNVis" Background="Transparent" BorderBrush="{x:Null}">
+                <DockPanel>
+                    <ToolBar x:Name="NN_toolBar" DockPanel.Dock="Top" IsEnabled="False">
+                        <Button x:Name="NN_Train_btn" Content="Run" Click="NN_Train_btn_Click" IsEnabled="False"></Button>
+                        <Label Content="Delay:"></Label>
+                        <ComboBox x:Name="NN_TrainDelay_cmb" Width="60" SelectionChanged="NN_TrainDelay_cmb_SelectionChanged">
+                            <ComboBoxItem Content="0 ms"></ComboBoxItem>
+                            <ComboBoxItem Content="10 ms"></ComboBoxItem>
+                            <ComboBoxItem Content="100 ms"></ComboBoxItem>
+                            <ComboBoxItem Content="500 ms"></ComboBoxItem>
+                            <ComboBoxItem Content="1000 ms"></ComboBoxItem>
+                        </ComboBox>
+                        <Button x:Name="Print_btn" Content="Print" Click="Print_btn_Click" IsEnabled="False"></Button>
+                        <Separator></Separator>
+                        <Label Content="Show neuron:"></Label>
+                        <CheckBox x:Name="ShowNeuronOutput_cb" Content="Output" Click="ShowNeuronOutput_cb_Click"></CheckBox>
+                        <CheckBox x:Name="ShowNeuronWeights_cb" Content="Weights" Click="ShowNeuronWeights_cb_Click"></CheckBox>
+                        <CheckBox x:Name="ShowNeuronBias_cb" Content="Bias" Click="ShowNeuronBias_cb_Click"></CheckBox>
+                        <CheckBox x:Name="ShowNeuronError_cb" Content="Error" Click="ShowNeuronError_cb_Click"></CheckBox>
+                        <Separator></Separator>
+                        <Button x:Name="Settings_btn" Content="Settings" Click="Settings_btn_Click"></Button>
+                    </ToolBar>
+                    <local:NNVis x:Name="NNVis"></local:NNVis>
+                </DockPanel>
+            </TabItem>
+            <TabItem x:Name ="Output_Tab_ti" Header="Output" Background="Transparent" BorderBrush="{x:Null}">
+                <TextBox x:Name="Output_tb" Background="{x:Null}" TextWrapping="NoWrap" AcceptsReturn="True" AcceptsTab="True" IsReadOnly="False" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" BorderBrush="{x:Null}"></TextBox>
+            </TabItem>
+            <TabItem x:Name ="OutputGraph_Tab_ti" Header="Graph" Background="Transparent" BorderBrush="{x:Null}">
+                <Grid>
+                    <local:Plot x:Name="OutputPlot" Grid.Row="0"></local:Plot>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>
